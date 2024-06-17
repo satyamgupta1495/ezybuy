@@ -1,0 +1,257 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+:root {
+  --text-color: rgb(63, 63, 63);
+}
+
+body {
+  /* background-color: #0C056D !important; */
+  /* background-color: #A8D0E6 !important; */
+  /* background-color: #ADBBDA !important; */
+  background-color: #EDE8F5 !important;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+
+#root {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  place-items: center;
+  min-width: 320px;
+  margin: 0 auto;
+  color: rgb(63, 63, 63);
+  /* position: relative; */
+  /* background-color: red; */
+}
+
+
+.blob1 {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: repeat;
+  background-image: url("data:image/svg+xml;utf8,%3Csvg viewBox=%220 0 1000 1000%22 xmlns=%22http:%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cdefs%3E%3ClinearGradient id=%22b%22 gradientTransform=%22rotate(-45 .5 .5)%22%3E%3Cstop offset=%220%25%22 stop-color=%22%2300DBDE%22%2F%3E%3Cstop offset=%22100%25%22 stop-color=%22%23FC00FF%22%2F%3E%3C%2FlinearGradient%3E%3CclipPath id=%22a%22%3E%3Cpath fill=%22currentColor%22 d=%22M769 632.5Q653 765 456 841T194 708.5q-65-208.5 12.5-395t281-165.5Q691 169 788 334.5t-19 298Z%22%2F%3E%3C%2FclipPath%3E%3C%2Fdefs%3E%3Cg clip-path=%22url(%23a)%22%3E%3Cpath fill=%22url(%23b)%22 d=%22M769 632.5Q653 765 456 841T194 708.5q-65-208.5 12.5-395t281-165.5Q691 169 788 334.5t-19 298Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+}
+
+.blob2 {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: repeat;
+  background-image: url("data:image/svg+xml;utf8,%3Csvg viewBox=%220 0 1000 1000%22 xmlns=%22http:%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cdefs%3E%3ClinearGradient id=%22b%22 gradientTransform=%22rotate(-45 .5 .5)%22%3E%3Cstop offset=%220%25%22 stop-color=%22%2300DBDE%22%2F%3E%3Cstop offset=%22100%25%22 stop-color=%22%23FC00FF%22%2F%3E%3C%2FlinearGradient%3E%3CclipPath id=%22a%22%3E%3Cpath fill=%22currentColor%22 d=%22M812 642.5Q727 785 572.5 822t-247-78.5Q233 628 193 480.5T274 186q121-147 283-53.5T808 363q89 137 4 279.5Z%22%2F%3E%3C%2FclipPath%3E%3C%2Fdefs%3E%3Cg clip-path=%22url(%23a)%22%3E%3Cpath fill=%22url(%23b)%22 d=%22M812 642.5Q727 785 572.5 822t-247-78.5Q233 628 193 480.5T274 186q121-147 283-53.5T808 363q89 137 4 279.5Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+}
+
+.home-wrapper {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* background-color: red; */
+}
+
+/* footer-section starts here */
+.footer-content {
+  /* background-color: red; */
+  position: inherit;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  bottom: 0;
+}
+
+.socials-links {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  /* background-color: red; */
+}
+
+.social-icon {
+  color: rgb(63, 63, 63);
+  font-size: 1rem;
+  margin-right: 1rem;
+}
+
+/* footer-section ends here */
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+
+.form-group {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+/* card css start here */
+
+/* Custom CSS for making cards the same height and improving text alignment */
+.product-card {
+  position: relative;
+  width: 20rem;
+  height: 29rem !important;
+  margin: 1rem;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: space-between !important;
+  align-items: center;
+  text-align: start;
+  /* background-color: pink !important; */
+}
+
+.card-container .card {
+  padding: 0rem;
+}
+
+.product-image {
+  /* background-color: yellow; */
+  width: 100% !important;
+  max-height: 15rem;
+  object-fit: cover;
+  padding: 0.5rem;
+  border-bottom: 1px solid #ccc;
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-description {
+  white-space: inherit;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* max-width: 100%; */
+}
+
+.card-button-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0.5rem;
+}
+
+
+
+/* card css ends here */
+
+
+.cart-container {
+  /* background-color: red; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  /* height: 80%; */
+  padding: 1rem 0;
+}
+
+.shipping-add {
+  /* background-color: red; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+
+}
+
+.cart-item-container {
+  /* background-color: red; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: inherit;
+}
+
+.card-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: 1rem;
+  height: 25rem;
+  width: 18rem;
+  border-radius: 5px;
+}
+
+.card-item img {
+  height: 60%;
+  width: 100%;
+  object-fit: contain;
+}
+
+.price {
+  /* background-color: black; */
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 1.2rem;
+  padding: 0 1rem;
+}
+
+.price p {
+  margin: 0;
+}
+
+.product-details {
+  /* background-color: red; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  height: 100%;
+  font-size: 1.2rem;
+}
+
+.product-details img {
+  width: 50%;
+  object-fit: contain;
+}
+
+.form-group {
+  /* background-color: red; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1rem;
+  height: 100%;
+  font-size: 1.2rem
+}
