@@ -1,6 +1,5 @@
-import { addToCart } from '@/helper';
 import useStore from '@/store/useStore';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';

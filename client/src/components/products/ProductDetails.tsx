@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import useProducts from '../hooks/useProducts';
 import useStore from '@/store/useStore';
-import { Form, Button, Row, Col, Container, Image } from 'react-bootstrap';
+import { Form, Button, Row, Col, Image } from 'react-bootstrap';
 
 function ProductDetails() {
     const { productDetail } = useStore((state) => state);
@@ -17,7 +17,7 @@ function ProductDetails() {
     const { state } = useLocation();
     const { fetchProductDetails, updatePoductDetails } = useProducts();
 
-    const handleChange = (e) => {
+    const handleChange = (e: any) => {
         const { name, value } = e.target;
         setFormData({
             ...formData,

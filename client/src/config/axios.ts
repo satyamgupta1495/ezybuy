@@ -9,7 +9,7 @@ const createAxiosInstance = (baseURL: string) => {
 
     const { user }: any = useStore.getState(); // Directly access the store state
     console.log("Token:", user?.accessToken);
-    
+
     axios.interceptors.request.use(
         (config: any) => {
             if (user?.accessToken) {
@@ -28,7 +28,7 @@ const createAxiosInstance = (baseURL: string) => {
 
     axios.interceptors.response.use(
         (response: AxiosResponse) => response,
-        (error: AxiosError) => {
+        (error: any) => {
             let message: { message: string; status: number | null } = {
                 message: 'An unknown error occurred',
                 status: null,

@@ -13,7 +13,7 @@ import useProducts from './hooks/useProducts';
 export default function Navbars() {
 
     const navigate = useNavigate()
-    const { user, logout, cart, currentCart, setCurrentCart, currentCartCount, setCurrentCartCount }: any = useStore((state) => state)
+    const { user, logout, currentCart, setCurrentCart, currentCartCount, setCurrentCartCount }: any = useStore((state) => state)
 
     const { fetchCart, addProductToCart } = useProducts()
 
