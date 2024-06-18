@@ -25,9 +25,22 @@ function getProductDetailsApi(data: string) {
     return axios.get(`${baseUrl}`);
 }
 
+function addProductApi(productData: any) {
+    const baseUrl = `/api/v1/product/`
+    return axios.post(`${baseUrl}`, productData, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        },
+    });
+}
+
 function updateProduct(productId: string | number, productData: any) {
     const baseUrl = `/api/v1/product/${productId}`
-    return axios.patch(`${baseUrl}`, productData);
+    return axios.patch(`${baseUrl}`, productData, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        },
+    });
 }
 
 function addToCart(data: any) {
@@ -50,4 +63,4 @@ function checkOut(data: any) {
     return axios.post(`${baseUrl}`, data);
 }
 
-export { login, logoutUser, register, getProducts, updateProduct, getProductDetailsApi, addToCart, getCart, removeFromCartApi, checkOut }
+export { login, logoutUser, register, getProducts, addProductApi, updateProduct, getProductDetailsApi, addToCart, getCart, removeFromCartApi, checkOut }

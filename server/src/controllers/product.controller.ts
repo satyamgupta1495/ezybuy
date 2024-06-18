@@ -32,7 +32,7 @@ class ProductController {
             const imagePath: any = await uploadToCloudinary(productImage);
 
             if (!imagePath) {
-                response.errorMsg = "Profile image is required!"
+                response.errorMsg = "Product image is required!"
                 res.status(StatusCodes.CONFLICT).json(response);
                 return;
             }
@@ -84,7 +84,7 @@ class ProductController {
         }
     }
 
-    updateProduct = async (req: Request, res: Response) => {
+    updateProduct = async (req: Request | any, res: Response) => {
         const response: any = {
             success: false,
             errorMsg: '',
@@ -95,7 +95,20 @@ class ProductController {
             const { productId } = req.params;
             const productData = req.body;
 
-            const serviceResponse = await this.productService.updateProduct(productId, productData);
+            const productImage = req.files?.image?.[0]?.path
+
+            let imagePath: any;
+            if (productImage) {
+                imagePath = await uploadToCloudinary(productImage);
+
+                if (!imagePath) {
+                    response.errorMsg = "Product image is required!"
+                    res.status(StatusCodes.CONFLICT).json(response);
+                    return;
+                }
+            }
+
+            const serviceResponse = await this.productService.updateProduct(productId, { ...productData, image: imagePath?.url });
 
             if (!serviceResponse.success) {
                 response.response = serviceResponse.response;

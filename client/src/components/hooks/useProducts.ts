@@ -1,4 +1,4 @@
-import { addToCart, checkOut, getCart, getProductDetailsApi, getProducts, removeFromCartApi, updateProduct } from "@/helper";
+import { addProductApi, addToCart, checkOut, getCart, getProductDetailsApi, getProducts, removeFromCartApi, updateProduct } from "@/helper";
 import useStore from "@/store/useStore";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
@@ -98,7 +98,22 @@ export default function useProducts() {
         }
     }
 
+    const addPoduct = async (data: any) => {
+        try {
+            const response: any = await addProductApi(data);
+            if (response.data?.success) {
+                setProductDetail(response.data.response?.result);
+                toast.success('Product added successfully!');
+                navigate('/product')
+            }
+        } catch (error: any) {
+            toast.error("Unable to add product");
+            console.error('Error:', error);
+        }
+    }
+
     return {
+        addPoduct,
         updatePoductDetails,
         handleCheckOut,
         fetchProductDetails,

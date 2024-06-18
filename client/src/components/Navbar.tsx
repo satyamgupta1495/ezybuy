@@ -2,7 +2,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { ShoppingCart, User as UserIcon } from "lucide-react";
 import { Button } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import useStore from '@/store/useStore';
 import toast from 'react-hot-toast';
 import { logoutUser } from '@/helper';
@@ -13,9 +13,19 @@ import useProducts from './hooks/useProducts';
 export default function Navbars() {
 
     const navigate = useNavigate()
+    const location = useLocation()
+
     const { user, logout, currentCart, setCurrentCart, currentCartCount, setCurrentCartCount }: any = useStore((state) => state)
 
     const { fetchCart, addProductToCart } = useProducts()
+
+    useEffect(() => {
+        if (user?.loggedInUser) {
+            setCurrentCartCount(0)
+            setCurrentCart({ products: [] })
+            fetchCart()
+        }
+    }, [])
 
     const handleLogout = async () => {
         try {
@@ -32,14 +42,6 @@ export default function Navbars() {
             console.error("Logout error:", error);
         }
     };
-
-    useEffect(() => {
-        if (user?.loggedInUser) {
-            setCurrentCartCount(0)
-            setCurrentCart({ products: [] })
-            fetchCart()
-        }
-    }, [])
 
     const handleCartView = async () => {
         try {
@@ -61,8 +63,6 @@ export default function Navbars() {
         }
     };
 
-
-
     return (
         <Navbar expand="lg" className="bg-white d-flex w-100">
             <Navbar.Brand href="/" className='mx-5'>Ezybuy</Navbar.Brand>
@@ -74,10 +74,13 @@ export default function Navbars() {
                 </Nav>
                 <Nav>
                     <div className="icon-container justify-content-center align-items-center d-flex mx-5 gap-4 fs-3">
+                        {location?.pathname === '/product' && user?.loggedInUser?.role === 'superadmin' && <Button variant="success" onClick={() => navigate("/product/product-details", { state: { action: "add" } })}>Add product</Button>}
+
                         {!user?.loggedInUser && <>
                             <Button variant="outline-dark" onClick={() => navigate("/login")}>Login</Button>
                             <Button variant="dark" onClick={() => navigate("/signup")}>Sign up</Button>
                         </>}
+
                         {user?.loggedInUser && <>
                             <Button variant="outline-dark" onClick={handleLogout}>Logout</Button>
                             <span className='fs-4 cursor-pointer'><UserIcon /></span>
