@@ -2,7 +2,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { ShoppingCart, User as UserIcon } from "lucide-react";
 import { Button } from 'react-bootstrap';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import useStore from '@/store/useStore';
 import toast from 'react-hot-toast';
 import { logoutUser } from '@/helper';
