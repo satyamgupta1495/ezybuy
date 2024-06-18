@@ -37,8 +37,6 @@ export default function Cart() {
                 };
             });
 
-            console.log(commonProducts);
-
             if (commonProducts.length > 0) {
                 setProduct(commonProducts);
             }
@@ -53,11 +51,12 @@ export default function Cart() {
 
     return (
         <div className="cart-container">
-            <h1 className="text-2xl font-bold mb-4">Your Cart</h1>
+
             {cart?.products?.length === 0 ? (
                 <p className='fs-2'>Your cart is empty.</p>
             ) : (
                 <>
+                    <h1 className="text-2xl font-bold mb-4">Your Cart</h1>
                     <div className="cart-item-container w-100 gap-4">
                         {product?.map((product: any) => (
                             <div key={product?._id} className='card-item border-2 border-gray-300'>
@@ -71,19 +70,19 @@ export default function Cart() {
                             </div>
                         ))}
                     </div>
+                    <div className="shipping-add">
+                        <input
+                            type="text"
+                            className="border border-gray-300 rounded px-3 py-2"
+                            value={shippingAddress}
+                            placeholder="Shipping address"
+                            onChange={handleChange}
+                        />
+                        <Button variant="dark" className='w-30' disabled={cart?.products?.length === 0 || shippingAddress.trim() === ''} onClick={() => handleCheckOut(cart?._id)}>Checkout</Button>
+                    </div>
                 </>
             )
             }
-            <div className="shipping-add">
-                <input
-                    type="text"
-                    className="border border-gray-300 rounded px-3 py-2"
-                    value={shippingAddress}
-                    placeholder="Shipping address"
-                    onChange={handleChange}
-                />
-                <Button variant="dark" className='w-30' disabled={cart?.products?.length === 0 || shippingAddress.trim() === ''} onClick={() => handleCheckOut(cart?._id)}>Checkout</Button>
-            </div>
 
         </div >
     );

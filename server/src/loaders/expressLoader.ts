@@ -46,7 +46,7 @@ class Express {
         this.express.use('/api/v1', v1RouteHandler());
 
         this.server.listen(this.port, () => {
-            console.log(`server is running... on port ${process.env.PORT}`);
+            console.log(`Server active on port : ${process.env.PORT}`);
         });
     }
 }
