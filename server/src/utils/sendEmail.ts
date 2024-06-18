@@ -14,8 +14,6 @@ const sendEmail = async (userId: string, cart: any) => {
         },
     });
 
-    console.log("carttt", JSON.stringify(cart))
-
     let mailGenerator = new Mailgen({
         theme: 'default',
         product: {

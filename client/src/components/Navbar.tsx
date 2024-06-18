@@ -17,8 +17,6 @@ export default function Navbars() {
 
     const { fetchCart, addProductToCart } = useProducts()
 
-
-
     const handleLogout = async () => {
         try {
             const response = await logoutUser();

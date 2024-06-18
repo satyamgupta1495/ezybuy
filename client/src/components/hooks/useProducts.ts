@@ -65,6 +65,7 @@ export default function useProducts() {
             const response: any = await checkOut({ productId: id, action: "delete" });
             if (response.data?.success) {
                 toast.success('Order placed successfully!');
+                fetchCart();
                 navigate('/');
             }
         } catch (error: any) {

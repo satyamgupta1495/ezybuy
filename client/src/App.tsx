@@ -6,7 +6,7 @@ import AppRoutes from './routes/index';
 import Loader from './Loader';
 import { Toaster } from 'react-hot-toast';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Navbars from './components/Navbar';
+import Navbars from '@/components/Navbar';
 import Footer from './components/Footer';
 
 function App() {
