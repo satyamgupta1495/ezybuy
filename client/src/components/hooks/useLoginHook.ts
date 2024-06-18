@@ -13,14 +13,13 @@ export default function useLoginHook() {
     const loginUser = async (data: any): Promise<void> => {
         try {
             const response: { data: any } = await login(data);
-            console.log("dasnidh97a89sd", response)
             if (response.data.success) {
                 setUser(response.data.response?.result)
                 toast.success(`Hello ${response.data.response?.result?.loggedInUser?.email}!`);
                 navigate('/')
             }
         } catch (error: any) {
-            toast.error(error?.message);
+            toast.error("Loing failed");
             console.error('Login error:', error);
         }
     };

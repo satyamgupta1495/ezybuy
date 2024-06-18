@@ -50,8 +50,8 @@ export default function Navbars() {
                         quantity: data?.quantity
                     })
                 );
-
                 await Promise.all(productPromises);
+                fetchCart();
                 navigate('/cart');
             } else {
                 navigate('/cart');

@@ -54,10 +54,13 @@ const sendEmail = async (userId: string, cart: any) => {
         html: mail
     };
 
-    const emailSent = await transporter.sendMail(mailOptions).then(() => true).catch((err) => console.log(err));
+    const emailSent = await transporter.sendMail(mailOptions).then(() => true).catch((err) => {
+        console.log(err)
+        return false
+    });
 
     if (!emailSent) {
-        console.log('Error while sending email inUTILS');
+        console.log('Error while sending email');
     }
 
     return emailSent;

@@ -8,7 +8,6 @@ const createAxiosInstance = (baseURL: string) => {
     axios.defaults.baseURL = baseURL;
 
     const { user }: any = useStore.getState(); // Directly access the store state
-    console.log("Token:", user?.accessToken);
 
     axios.interceptors.request.use(
         (config: any) => {

@@ -8,6 +8,7 @@ import { Toaster } from 'react-hot-toast';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbars from '@/components/Navbar';
 import Footer from './components/Footer';
+import '@/assets/css/style.css'
 
 function App() {
 

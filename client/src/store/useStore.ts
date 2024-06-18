@@ -1,7 +1,3 @@
-
-
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 
@@ -52,40 +48,3 @@ const useStore = create<StoreState>()(
 );
 
 export default useStore;
-
-// import { create } from "zustand";
-// import { devtools, persist } from "zustand/middleware";
-
-// const Store = (set: any) => ({
-//     user: {},
-//     setUser: (userData: any) => {
-//         set({ user: { ...userData } })
-//     },
-//     products: [],
-//     setProducts: (products: any) => {
-//         set({ products: products })
-//     },
-//     cart: [],
-//     setCart: (cart: any) => {
-//         set({ cart: cart })
-//     },
-//     currentCartCount: [],
-//     setCurrentCartCount: (currentCartCount: any) => {
-//         console.log("currentCartCount", currentCartCount)
-//         set({ currentCartCount: currentCartCount })
-//     },
-//     currentCart: {
-//         products: []
-//     },
-//     setCurrentCart: (currentCart: any) => {
-//         console.log("currentCart", currentCart)
-//         set({ currentCart })
-//     },
-//     logout: () => {
-//         set({ user: {} })
-//     },
-// })
-
-// const useStore = create(devtools(persist(Store, { name: "user" })))
-
-// export default useStore;

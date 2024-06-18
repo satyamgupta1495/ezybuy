@@ -27,7 +27,6 @@ function ProductDetails() {
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
-        console.log("formData", formData);
         updatePoductDetails(state?.id, formData);
     };
 

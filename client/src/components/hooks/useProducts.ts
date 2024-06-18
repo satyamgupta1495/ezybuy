@@ -12,12 +12,11 @@ export default function useProducts() {
     const fetchProducts = async (): Promise<void> => {
         try {
             const response: { data: any } = await getProducts();
-            console.log("response", response)
             if (response.data.success) {
                 setProducts(response.data.response?.result)
             }
         } catch (error: any) {
-            toast.error(error?.message);
+            toast.error("Unable to fetch products at the moment");
             console.error('Error:', error);
         }
     };
@@ -38,7 +37,6 @@ export default function useProducts() {
     const addProductToCart = async (data: any) => {
         try {
             const response: { data: any } = await addToCart({ productId: data?.productId, quantity: data?.quantity });
-            console.log("responsedsa312", response)
             if (response.data?.success) {
                 setCart(response.data.response?.result)
             }
@@ -55,7 +53,7 @@ export default function useProducts() {
                 fetchCart();
             }
         } catch (error: any) {
-            toast.error(error?.message);
+            toast.error("Remove from cart failed");
             console.error('Error:', error);
         }
     }
@@ -69,7 +67,7 @@ export default function useProducts() {
                 navigate('/');
             }
         } catch (error: any) {
-            toast.error(error);
+            toast.error("Checkout failed, please try again");
             console.error('Error while checking out:', error);
         }
     }
@@ -81,7 +79,7 @@ export default function useProducts() {
                 setProductDetail(response.data.response?.result);
             }
         } catch (error: any) {
-            toast.error(error?.message);
+            toast.error("Unable to fetch product details");
             console.error('Error:', error);
         }
     }
@@ -95,7 +93,7 @@ export default function useProducts() {
                 navigate('/product')
             }
         } catch (error: any) {
-            toast.error(error?.message);
+            toast.error("Unable to update product details");
             console.error('Error:', error);
         }
     }
