@@ -13,7 +13,7 @@ export default function Products() {
 
   return (
     <>
-      <div className="card-container w-100 d-flex justify-content-evenly align-items-center flex-wrap">
+      <div className="card-container w-100 flex justify-center items-start flex-wrap">
         {products && products?.map((product: any) => (
           <ProductCard key={product?._id} product={product} />
         ))}

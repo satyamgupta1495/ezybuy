@@ -16,14 +16,21 @@ export default function productRouteHandler(): Router {
 
     //Private routes
     productRouter.get('/:productId', auth.verifyJWT, productController.getProduct)
-    productRouter.post('/', auth.verifyJWT, upload.fields([
+
+    productRouter.post('/', auth.verifyJWT, auth.verifyUserRole, upload.fields([
         {
             name: "image",
             maxCount: 1
         }
     ]), productController.createProduct)
 
-    productRouter.patch('/:productId', auth.verifyJWT, auth.verifyUserRole, productController.updateProduct)
+    productRouter.patch('/:productId', auth.verifyJWT, auth.verifyUserRole, upload.fields([
+        {
+            name: "image",
+            maxCount: 1
+        }
+    ]), productController.updateProduct)
+
     productRouter.delete('/:productId', auth.verifyJWT, auth.verifyUserRole, productController.deleteProduct)
 
     return productRouter;

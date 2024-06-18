@@ -65,7 +65,7 @@ body::-webkit-scrollbar {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* background-color: red; */
+  /* background-color: black ; */
 }
 
 /* footer-section starts here */
@@ -98,13 +98,6 @@ body::-webkit-scrollbar {
 
 .read-the-docs {
   color: #888;
-}
-
-
-.form-group {
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
 }
 
 /* card css start here */
@@ -226,14 +219,18 @@ body::-webkit-scrollbar {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-  height: 100%;
-  font-size: 1.2rem;
+  border: 2px solid red;
+  padding: 1rem;
+  border: 1px solid #414141;
+  border-radius: 5px;
+  width: 40%;
+  height: 100% !important;
+
 }
 
 .product-details img {
-  width: 50%;
+  min-width: 50%;
+  min-height: 50%;
   object-fit: contain;
 }
 
@@ -241,16 +238,15 @@ body::-webkit-scrollbar {
   /* background-color: red; */
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: flex-start;
   flex-wrap: wrap;
-  gap: 1rem;
-  height: 100%;
-  font-size: 1.2rem
+  margin-top: 1rem;
+  /* font-size: 1.2rem; */
 }
 
-
 .form-container {
+  /* background-color: teal; */
   width: 400px;
   border: 2px solid transparent;
   padding: 32px 24px;
@@ -310,7 +306,7 @@ body::-webkit-scrollbar {
   border: 1px solid #414141;
   background-color: transparent;
   font-family: inherit;
-  background-color: red;
+  /* background-color: red; */
 }
 
 .form-container .form-group input::placeholder {
@@ -350,4 +346,8 @@ body::-webkit-scrollbar {
 .form-container .form-submit-btn:hover {
   background-color: #fff;
   border-color: #fff;
+}
+
+.form-container .form .form-group {
+  align-items: flex-start;
 }
