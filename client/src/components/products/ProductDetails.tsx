@@ -82,7 +82,7 @@ function ProductDetails() {
 
                     <Form.Group className='form-group'>
                         <div>
-                            <FileUpload imageUrl={formData?.image} imageTitle={formData?.title} handleFileChange={handleFileChange} />
+                            <FileUpload imageUrl={formData?.image} imageTitle={formData?.title} handleFileChange={handleFileChange} action={state?.action} />
                         </div>
                     </Form.Group>
 

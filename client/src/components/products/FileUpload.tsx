@@ -1,10 +1,10 @@
 import { useRef, useState } from 'react';
 import { Button, Image } from 'react-bootstrap';
 
-function FileUpload({ imageUrl, imageTitle, handleFileChange }: any) {
+function FileUpload({ imageUrl, imageTitle, handleFileChange, action }: any) {
     const fileRef = useRef<any>(null);
 
-    const [editBtn, setEditBtn] = useState<boolean>(imageTitle ? false : true);
+    const [editBtn, setEditBtn] = useState<boolean>(action === 'add' ? true : false);
 
     return (
         <form className="file-upload w-100">
@@ -28,7 +28,11 @@ function FileUpload({ imageUrl, imageTitle, handleFileChange }: any) {
                         <p>Selected file: {fileRef.current.name}</p>
                     </div>
                 )}
-                <Button className='w-40 mt-3' variant='danger' onClick={() => setEditBtn((prev) => !prev)}>Cancel</Button>
+                <Button className='w-40 mt-3' variant='danger' onClick={() => {
+                    if (action !== 'add') {
+                        setEditBtn((prev) => !prev)
+                    }
+                }}>Cancel</Button>
 
             </div> :
                 <div className="image-container w-50 h-50">
