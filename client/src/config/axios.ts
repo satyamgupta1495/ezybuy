@@ -1,15 +1,19 @@
 import axios, { AxiosResponse, AxiosError } from 'axios';
 import { URL } from '@/constants';
 import useStore from '@/store/useStore';
-
+import refreshToken from '../utils/refreshToken';
 
 const createAxiosInstance = (baseURL: string) => {
-    axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-    axios.defaults.baseURL = baseURL;
+    const axiosInstance = axios.create({
+        baseURL,
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+    });
 
-    const { user }: any = useStore.getState(); // Directly access the store state
+    const { user }: any = useStore.getState();
 
-    axios.interceptors.request.use(
+    axiosInstance.interceptors.request.use(
         (config: any) => {
             if (user?.accessToken) {
                 config.headers = {
@@ -24,10 +28,9 @@ const createAxiosInstance = (baseURL: string) => {
         }
     );
 
-
-    axios.interceptors.response.use(
+    axiosInstance.interceptors.response.use(
         (response: AxiosResponse) => response,
-        (error: any) => {
+        async (error: any) => {
             let message: { message: string; status: number | null } = {
                 message: 'An unknown error occurred',
                 status: null,
@@ -36,10 +39,16 @@ const createAxiosInstance = (baseURL: string) => {
             if (error.response) {
                 switch (error.response.status) {
                     case 401:
-                        message = {
-                            message: 'Invalid credentials',
-                            status: error.response.status,
-                        };
+                        try {
+                            const accessToken = await refreshToken();
+                            if (accessToken) {
+                                error.config.headers['Authorization'] = `Bearer ${accessToken}`;
+                                return axiosInstance.request(error.config);
+                            }
+                        } catch (refreshError) {
+                            console.error(refreshError);
+                            window.location.href = '/login';
+                        }
                         break;
                     case 403:
                         window.location.href = '/access-denied';
@@ -62,7 +71,7 @@ const createAxiosInstance = (baseURL: string) => {
         }
     );
 
-    return axios;
+    return axiosInstance;
 };
 
 const axiosCoreInstance = createAxiosInstance(URL);

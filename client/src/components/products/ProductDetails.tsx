@@ -33,7 +33,6 @@ function ProductDetails() {
             const file = event.target.files[0];
             fileRef.current = file;
         }
-        console.log("avater", fileRef.current)
     }
 
     const handleSubmit = (e: any) => {
@@ -65,29 +64,28 @@ function ProductDetails() {
     }, [productDetail])
 
     return (
-        <div className='product-details my-1'>
+        <div className='product-details my-1 shadow-none'>
             {productDetail && (
                 <Form className='h-100' onSubmit={handleSubmit}>
 
                     <Form.Group controlId='formTitle' className='form-group'>
-                        {/* <Form.Label>Title:</Form.Label> */}
                         <Form.Control
                             type='text'
                             name='title'
                             value={formData?.title}
                             onChange={handleChange}
                             placeholder='Enter title'
+                            className='shadow-none'
                         />
                     </Form.Group>
 
                     <Form.Group className='form-group'>
                         <div>
-                            <FileUpload imageUrl={formData?.image} imageTitle={formData?.title} handleFileChange={handleFileChange} />
+                            <FileUpload imageUrl={formData?.image} imageTitle={formData?.title} handleFileChange={handleFileChange} action={state?.action} />
                         </div>
                     </Form.Group>
 
                     <Form.Group controlId='formDescription' className='form-group'>
-                        {/* <Form.Label>Description:</Form.Label> */}
                         <Form.Control
                             as='textarea'
                             rows={6}
@@ -95,17 +93,18 @@ function ProductDetails() {
                             value={formData?.description}
                             onChange={handleChange}
                             placeholder='Enter description'
+                            className='shadow-none'
                         />
                     </Form.Group>
 
                     <Form.Group controlId='formPrice' className='form-group'>
-                        {/* <Form.Label>Price:</Form.Label> */}
                         <Form.Control
                             type='number'
                             name='price'
                             value={formData?.price}
                             onChange={handleChange}
                             placeholder='Enter price'
+                            className='shadow-none'
                         />
                     </Form.Group>
 
@@ -113,7 +112,7 @@ function ProductDetails() {
                         <Button variant='dark' className='w-40 mt-3' type='submit'>
                             Save
                         </Button> :
-                        <Button variant='success' className='w-40 mt-3' type='submit'>
+                        <Button variant='dark' className='w-40 mt-4' type='submit'>
                             Add product
                         </Button>}
                 </Form>

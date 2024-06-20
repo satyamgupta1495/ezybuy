@@ -101,7 +101,7 @@ function ProductCard({ product }: ProductCardProps) {
         <Card className="product-card">
             {isSuperAdmin && (
                 <div
-                    className="absolute top-2 fs-5 right-2 bg-slate-200 bg-opacity-60 text-black p-1 cursor-pointer"
+                    className=" rounded-full absolute top-2 fs-5 right-2 bg-slate-200 bg-opacity-60 text-black p-1 cursor-pointer"
                     onClick={(e) => {
                         e.stopPropagation();
                         handleClick(product?._id)

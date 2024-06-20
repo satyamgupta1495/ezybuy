@@ -63,4 +63,9 @@ function checkOut(data: any) {
     return axios.post(`${baseUrl}`, data);
 }
 
-export { login, logoutUser, register, getProducts, addProductApi, updateProduct, getProductDetailsApi, addToCart, getCart, removeFromCartApi, checkOut }
+function refreshTokenApi(data: any) {
+    const baseUrl = `/api/v1/auth/refresh-token`
+    return axios.post(`${baseUrl}`, data);
+}
+
+export { login, logoutUser, register, getProducts, addProductApi, updateProduct, getProductDetailsApi, addToCart, getCart, removeFromCartApi, checkOut, refreshTokenApi }

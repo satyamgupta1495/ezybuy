@@ -13,6 +13,7 @@ export default function authRouteHandler(): Router {
 
     //Private routes
     authRouter.post('/logout', auth.verifyJWT, authController.logout);
+    authRouter.post('/refresh-token', authController.refreshAccessToken)
 
     return authRouter;
 }

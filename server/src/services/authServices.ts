@@ -148,4 +148,41 @@ export default class AuthService {
             return res;
         }
     }
+
+    public async refreshAccessToken(incomingRefreshToken: string, decodedToken: string | any) {
+        const res: any = {
+            errorMessage: '',
+            internalError: false,
+            response: {},
+            success: false,
+            error: undefined,
+        };
+
+        try {
+            const user: any = await User.findById(decodedToken?._id);
+
+            if (!user) {
+                res.errorMessage = "invalid_refresh_token";
+                return res;
+            }
+
+            if (!(user?.refreshToken === incomingRefreshToken)) {
+                res.errorMessage = "refresh_token_expired";
+                return res;
+            }
+
+            const { accessToken, refreshToken } = await this.generateToken(user._id);
+
+            res.success = true;
+            res.response = { accessToken, refreshToken };
+            return res;
+
+        } catch (error) {
+            res.internalError = true;
+            res.errorMessage = error;
+            res.error = error;
+            return res;
+        }
+    }
+
 }
