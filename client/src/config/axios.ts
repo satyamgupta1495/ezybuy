@@ -1,4 +1,4 @@
-import axios, { AxiosResponse, AxiosError, AxiosRequestConfig } from 'axios';
+import axios, { AxiosResponse, AxiosError } from 'axios';
 import { URL } from '@/constants';
 import useStore from '@/store/useStore';
 import refreshToken from '../utils/refreshToken';
