@@ -20,6 +20,14 @@ body,
   --text-color: rgb(63, 63, 63);
 }
 
+body {
+  /* background-color: #ADBBDA !important; */
+  /* background-color: #EDE8F5 !important; */
+  /* background-color: #EAE7DC !important; */
+  background-color: #f1f9f8 !important;
+  color: #E98074 !important;
+}
+
 body::-webkit-scrollbar {
   display: none;
 }
@@ -113,7 +121,7 @@ body::-webkit-scrollbar {
   justify-content: space-between !important;
   align-items: center;
   text-align: start;
-  /* background-color: pink !important; */
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
 .card-container .card {
@@ -223,7 +231,7 @@ body::-webkit-scrollbar {
   padding: 1rem;
   border: 1px solid #414141;
   border-radius: 5px;
-  width: 40%;
+  max-width: 25%;
   height: 100% !important;
 
 }
@@ -350,4 +358,53 @@ body::-webkit-scrollbar {
 
 .form-container .form .form-group {
   align-items: flex-start;
+}
+
+
+@media screen and (max-width: 479px) {
+
+  .product-details {
+    max-width: 100%;
+    margin: 1rem;
+  }
+
+  #quantity-input {
+    /* background-color: red; */
+    text-align: center !important;
+  }
+
+  .form-container {
+    width: 20% !important;
+  }
+
+  .footer-content {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    align-self: flex-start;
+    margin-top: 2rem;
+  }
+
+  .footer-content .copyright {
+    line-height: 1 !important;
+  }
+
+  .footer-content .dev-message {
+    line-height: 1 !important;
+  }
+
+  .socials-links {
+    height: 2rem !important;
+    font-size: 2rem;
+    margin: 1rem 0 2rem 0;
+  }
+
+  .form-container {
+    width: 85% !important;
+  }
+
+  .stats-container {
+    width: 70%;
+  }
+
 }

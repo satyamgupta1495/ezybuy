@@ -28,7 +28,7 @@ function FileUpload({ imageUrl, imageTitle, handleFileChange, action }: any) {
                         <p>Selected file: {fileRef.current.name}</p>
                     </div>
                 )}
-                <Button className='w-40 mt-3' variant='danger' onClick={() => {
+                <Button className='w-20 mt-3' variant='danger' onClick={() => {
                     if (action !== 'add') {
                         setEditBtn((prev) => !prev)
                     }

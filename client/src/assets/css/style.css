@@ -149,7 +149,7 @@
 }
 
 #file-input {
-    width: 350px;
+    /* width: 350px; */
     max-width: 100%;
     color: #444;
     padding: 2px;
@@ -161,16 +161,17 @@
 #file-input::file-selector-button {
     margin-right: 20px;
     border: none;
-    background: #084cdf;
+    /* background: #084cdf; */
     padding: 10px 20px;
     border-radius: 5px;
-    color: #fff;
+    color: var(--text-primary);
     cursor: pointer;
     transition: background .2s ease-in-out;
 }
 
 #file-input::file-selector-button:hover {
-    background: #0d45a5;
+    background-color: #222;
+    color: white;
 }
 
 
