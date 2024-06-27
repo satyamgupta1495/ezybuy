@@ -40,11 +40,7 @@ const createAxiosInstance = (baseURL: string) => {
                 switch (error.response.status) {
                     case 401:
                         try {
-                            const accessToken = await refreshToken();
-                            if (accessToken) {
-                                error.config.headers['Authorization'] = `Bearer ${accessToken}`;
-                                return axiosInstance.request(error.config);
-                            }
+                            await refreshToken();
                         } catch (refreshError) {
                             console.error(refreshError);
                             window.location.href = '/login';

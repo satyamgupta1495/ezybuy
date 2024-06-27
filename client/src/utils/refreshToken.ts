@@ -5,7 +5,7 @@ async function refreshToken() {
     try {
         const { user }: any = useStore.getState();
         const response = await refreshTokenApi({ refreshToken: user?.refreshToken })
-        const { accessToken } = response.data;
+        const { accessToken } = response.data?.response;
         useStore.setState({
             user: {
                 ...user,

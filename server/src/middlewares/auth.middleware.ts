@@ -35,7 +35,7 @@ class Authorization {
             next()
         } catch (error) {
             response.internalError = true;
-            response.errorMessage = "Invalid token ";
+            response.errorMessage = error?.message;
             response.error = error;
             res.status(StatusCodes.UNAUTHORIZED).json(response);
         }

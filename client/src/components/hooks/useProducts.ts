@@ -34,9 +34,9 @@ export default function useProducts() {
         }
     }
 
-    const addProductToCart = async (data: any) => {
+    const addProductToCart = async (products: { productId: string, quantity: number }[]) => {
         try {
-            const response: { data: any } = await addToCart({ productId: data?.productId, quantity: data?.quantity });
+            const response: any = await addToCart({ products });
             if (response.data?.success) {
                 setCart(response.data.response?.result)
             }

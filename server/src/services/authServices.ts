@@ -4,6 +4,10 @@ import User from "../models/user.model";
 import Cart from "../models/cart.model";
 import CartService from "./cartServices";
 
+interface IGenerateToken {
+    id: string;
+    userRefreshToken?: string
+}
 
 @Service()
 export default class AuthService {
@@ -68,7 +72,7 @@ export default class AuthService {
                 return res;
             }
 
-            const { accessToken, refreshToken } = await this.generateToken(user._id);
+            const { accessToken, refreshToken } = await this.generateToken({ id: user._id });
 
             const loggedInUser = await User.findById(user._id).select("-password -refreshToken");
 
@@ -117,7 +121,7 @@ export default class AuthService {
         }
     }
 
-    public async generateToken(id: string) {
+    public async generateToken({ id, userRefreshToken }: IGenerateToken) {
         const res: any = {
             errorMessage: '',
             internalError: false,
@@ -127,18 +131,28 @@ export default class AuthService {
         };
         try {
             if (!id) {
-                console.log("Id is required to generate access token")
-                return
+                res.errorMessage = "Id is required to generate access token";
+                return res;
             }
 
             const user: any = await User.findById(id);
+
+            if (!user) {
+                res.errorMessage = "User not found with this id";
+                return res;
+            }
+
             const accessToken = await user.generateAccessToken()
-            const refreshToken = await user.generateRefreshToken()
+            let refreshToken = user.refreshToken
 
-            user.refreshToken = refreshToken
-
-            await user.save({ validateBeforeSave: false });
-
+            if (userRefreshToken) {
+                const isTokenExpired = await this.isTokenExpired(userRefreshToken)
+                if (isTokenExpired) {
+                    refreshToken = await user.generateRefreshToken()
+                    user.refreshToken = refreshToken
+                    await user.save({ validateBeforeSave: false });
+                }
+            }
             return { accessToken, refreshToken }
 
         } catch (error) {
@@ -162,17 +176,12 @@ export default class AuthService {
             const user: any = await User.findById(decodedToken?._id);
 
             if (!user) {
-                res.errorMessage = "invalid_refresh_token";
+                res.errorMessage = "Invalid user. Please login again";
                 return res;
             }
 
-            if (!(user?.refreshToken === incomingRefreshToken)) {
-                res.errorMessage = "refresh_token_expired";
-                return res;
-            }
-
-            const { accessToken, refreshToken } = await this.generateToken(user._id);
-
+            const { accessToken, refreshToken } = await this.generateToken({ id: user._id, userRefreshToken: incomingRefreshToken });
+            
             res.success = true;
             res.response = { accessToken, refreshToken };
             return res;
@@ -183,6 +192,11 @@ export default class AuthService {
             res.error = error;
             return res;
         }
+    }
+
+    public async isTokenExpired(refreshToken: any) {
+        const isTokenExpired = new Date(refreshToken * 1000) < new Date();
+        return isTokenExpired
     }
 
 }
