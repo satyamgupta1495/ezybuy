@@ -111,8 +111,6 @@ class AuthController {
         try {
             const incomingRefreshToken = req.cookies?.refreshToken || req.body?.refreshToken;
 
-            console.log("incomingRefreshToken", incomingRefreshToken)
-
             if (!incomingRefreshToken) {
                 response.errorMsg = "Unauthorized error"
                 return response
@@ -120,11 +118,7 @@ class AuthController {
 
             const decodedToken: any = jwt.verify(incomingRefreshToken, process.env.REFRESH_TOKEN_SECRET);
 
-            console.log("decodedToken", decodedToken)
-
             const serviceResponse = await this.authService.refreshAccessToken(incomingRefreshToken, decodedToken)
-
-            console.log("serviceResponse", serviceResponse)
 
             if (!serviceResponse.success) {
                 response.errorMsg = serviceResponse.errorMessage;

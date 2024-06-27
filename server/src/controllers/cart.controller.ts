@@ -18,10 +18,11 @@ class CartController {
             response: {},
         };
         try {
-            const { productId, quantity } = req.body;
+            const { products } = req.body
+            // const { productId, quantity } = req.body;    
             const userId = req.user?._id
 
-            const serviceResponse = await this.cartService.addToCart({ userId, productId, quantity })
+            const serviceResponse = await this.cartService.addToCart({ userId, products })
 
             if (!serviceResponse.success) {
                 response.response = serviceResponse.response;

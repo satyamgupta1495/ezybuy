@@ -19,19 +19,21 @@ export default class CartService {
         }
 
         try {
-            const { userId, productId, quantity } = data;
+            const { userId, products } = data;
             let cart = await Cart.findOne({ userId: userId });
 
             if (!cart) {
-                cart = await Cart.create({ userId, products: [{ productId, quantity }] });
-            } else {
+                cart = await Cart.create({ userId, products: [] });
+            }
+
+            products.forEach(({ productId, quantity }: { productId: string, quantity: number }) => {
                 const productIndex = cart?.products?.findIndex(p => p.productId?.toString() === productId);
                 if (productIndex >= 0) {
                     cart.products[productIndex].quantity = Number(cart?.products[productIndex]?.quantity) + Number(quantity);
                 } else {
                     cart.products.push({ productId, quantity });
                 }
-            }
+            });
 
             await cart.save();
             res.success = true;
@@ -89,7 +91,7 @@ export default class CartService {
 
             const cart: any = await Cart.findOne({ userId }).populate({
                 path: 'products.productId',
-                model: 'Product' 
+                model: 'Product'
             });
 
             if (!cart) {

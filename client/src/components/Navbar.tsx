@@ -46,13 +46,7 @@ export default function Navbars() {
     const handleCartView = async () => {
         try {
             if (currentCart?.products?.length > 0) {
-                const productPromises = currentCart.products.map((data: any) =>
-                    addProductToCart({
-                        productId: data?.productId,
-                        quantity: data?.quantity
-                    })
-                );
-                await Promise.all(productPromises);
+                await addProductToCart(currentCart.products);
                 fetchCart();
                 navigate('/cart');
             } else {
